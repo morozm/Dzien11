@@ -1,4 +1,5 @@
-﻿using System;
+﻿using P04WeatherForecastAPI.Client.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +20,9 @@ namespace P04WeatherForecastAPI.Client
     /// </summary>
     public partial class ShopProductsView : Window
     {
-        public ShopProductsView()
+        public ShopProductsView(ProductsViewModel productsViewModel)
         {
+            DataContext = productsViewModel;
             InitializeComponent();
         }
     }

@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace P04WeatherForecastAPI.Client.ViewModels
 {
@@ -21,8 +22,22 @@ namespace P04WeatherForecastAPI.Client.ViewModels
         public ProductsViewModel(IProductService productService)
         {
             _productService = productService;
+            _products = new ObservableCollection<Product>();
+
+            GetProducts();
         }
 
+        private async void GetProducts()
+        {
+            var productsResult = await _productService.GetProductsAsync();
+            if (productsResult.Success)
+            {
+                foreach (var p in productsResult.Data)
+                {
+                    _products.Add(p);
+                }
+            }
+        }
 
     }
 }
