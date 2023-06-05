@@ -17,24 +17,22 @@ namespace P04WeatherForecastAPI.Client.ViewModels
     {
         private readonly IProductService _productService;
 
-        private ObservableCollection<Product> _products;
+        public ObservableCollection<Product> Products { get; set; }
 
         public ProductsViewModel(IProductService productService)
         {
             _productService = productService;
-            _products = new ObservableCollection<Product>();
-
-            GetProducts();
+            Products = new ObservableCollection<Product>();          
         }
 
-        private async void GetProducts()
+        public async void GetProducts()
         {
             var productsResult = await _productService.GetProductsAsync();
             if (productsResult.Success)
             {
                 foreach (var p in productsResult.Data)
                 {
-                    _products.Add(p);
+                    Products.Add(p);
                 }
             }
         }

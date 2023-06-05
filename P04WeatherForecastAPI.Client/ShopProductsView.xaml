@@ -7,7 +7,14 @@
         mc:Ignorable="d"
         Title="ShopProductsWindow" Height="450" Width="800">
 
-    <ListView ItemsSource="">
-        
+    <ListView ItemsSource="{Binding Products}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <StackPanel>
+                    <Label Content="{Binding Title}"></Label>
+                    <Label Content="{Binding Description}"></Label>
+                </StackPanel>
+            </DataTemplate>
+        </ListView.ItemTemplate>
     </ListView>
 </Window>

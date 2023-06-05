@@ -31,22 +31,22 @@ namespace P04WeatherForecastAPI.Client.ViewModels
 
         //shop
         private readonly ShopProductsView _shopProductsView;
-
+        private readonly ProductsViewModel _productsViewModel;
 
         public MainViewModelV4(IAccuWeatherService accuWeatherService, 
             FavoriteCityViewModel favoriteCityViewModel, FavoriteCitiesView favoriteCitiesView,
-            ShopProductsView shopProductsView
+            ProductsViewModel productsViewModel, ShopProductsView shopProductsView
             )
         {
             _favoriteCitiesView = favoriteCitiesView;
             _favoriteCityViewModel = favoriteCityViewModel;
 
             _shopProductsView = shopProductsView;
-        
+            _productsViewModel = productsViewModel;
 
-            // _serviceProvider= serviceProvider; 
-            //LoadCitiesCommand = new RelayCommand(x => LoadCities(x as string));
-            _accuWeatherService = accuWeatherService;
+                // _serviceProvider= serviceProvider; 
+                //LoadCitiesCommand = new RelayCommand(x => LoadCities(x as string));
+                _accuWeatherService = accuWeatherService;
             Cities = new ObservableCollection<CityViewModel>(); // podejście nr 2 
 
 
@@ -110,8 +110,8 @@ namespace P04WeatherForecastAPI.Client.ViewModels
         [RelayCommand]
         public void OpenShopWindow()
         {
-
             _shopProductsView.Show();
+            _productsViewModel.GetProducts();
         }
     }
 }
