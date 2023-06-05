@@ -1,0 +1,12 @@
+curl 
+
+curl -X "GET" "https://localhost:7230/api/WeatherForecast/onlyTwo" -H "accept: text/plain"
+
+pamietac o zmianianie ' na ""  w windows 
+
+-k paramter ignorujacy ssl
+
+w powershell
+
+Invoke-WebRequest -Method GET -Uri "https://localhost:7230/api/WeatherForecast/onlyTwo" -Headers @{"accept" = "text/plain"}
+
