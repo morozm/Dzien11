@@ -65,10 +65,19 @@ namespace P05Shop.API.Controllers
 
         //https://localhost:7230/api/WeatherForecast/filter?cityName=warsaw&country=poland
         [HttpGet("filter")]
-        public string GetValueFromPath([FromQuery] string cityName, string country)
+        public string GetValueFromPath([FromQuery] string cityName, [FromQuery] string country)
         {
             return $"this is result: cityName : {cityName}, country : {country}";
         }
+
+        //https://localhost:7230/api/WeatherForecast/filterComplicated?Version=1&Key=a&Type=a&Rank=100&LocalizedName=warszawa&Country.ID=1&Country.LocalizedName=Polska&AdministrativeArea.ID=1&AdministrativeArea.LocalizedName=a
+        [HttpGet("filterComplicated")]
+        public string GetValueFromPath2([FromQuery] City city)
+        {
+            return $"this is result: cityName : {city.LocalizedName}, country : {city.Country.LocalizedName}";
+        }
+
+
 
         //https://localhost:7230/api/WeatherForecast
         [HttpPost]
