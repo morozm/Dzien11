@@ -1,0 +1,35 @@
+stworzylismy api 
+
+curl 
+
+curl -X "GET" "https://localhost:7230/api/WeatherForecast/onlyTwo" -H "accept: text/plain"
+
+pamietac o zmianianie ' na ""  w windows 
+
+-k paramter ignorujacy ssl
+
+w powershell
+
+Invoke-WebRequest -Method GET -Uri "https://localhost:7230/api/WeatherForecast/onlyTwo" -Headers @{"accept" = "text/plain"}
+
+poznalismy postmana i swaggera 
+
+stworzylismy api do produktów 
+
+zamiast bazy stworzlismy losowe dane (bogus)
+
+przygotowalismy ProductService w api (DI)
+
+przygotliwalismy ServiceResponse (zwracania samych produktow zwracamy ServiceResponse)
+
+przeszlismy do klienta 
+
+przenieslimy do konfiguracji adres api bazowy oraz adres do produktow 
+
+zmapowalismy AppSettings do klasy AppSettings
+pobralismy konfigracje w ConfigureServices
+
+i dodatkowo wstrzykujemy httpclient do serwisu 
+zamiast na sztywno korzystac z nazw endpointow w serwisie 
+
+na koncu przygtolismy viewmodel produktow i wyswietlismy dane w widoku uzywajac listview 
