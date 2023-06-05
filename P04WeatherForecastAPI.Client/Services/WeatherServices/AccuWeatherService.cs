@@ -31,7 +31,8 @@ namespace P04WeatherForecastAPI.Client.Services.WeatherServices
 
             var configuration = builder.Build();
             api_key = configuration["api_key"];
-            language = configuration["default_language"];
+            // language = configuration["default_language"];
+            language = configuration["AppSettings:DefaultLanguage"];
         }
 
 

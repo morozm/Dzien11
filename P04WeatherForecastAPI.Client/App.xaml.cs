@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using P04WeatherForecastAPI.Client.Configuration;
+using P04WeatherForecastAPI.Client.Services.ProductServices;
 using P04WeatherForecastAPI.Client.Services.WeatherServices;
 using P04WeatherForecastAPI.Client.ViewModels;
+using P06Shop.Shared.Services.ProductService;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -42,7 +44,9 @@ namespace P04WeatherForecastAPI.Client
         {
             // pobranie appsettings z konfiguracji i zmapowanie na klase AppSettings 
             //Microsoft.Extensions.Options.ConfigurationExtensions
-            var appSettngs = _configuration.GetSection("AppSettings").Get<AppSettings>();
+            var appSettings = _configuration.GetSection("AppSettings");
+            var appSettingsSection = appSettings.Get<AppSettings>();
+            services.Configure<AppSettings>(appSettings);
 
             services.AddSingleton<IAccuWeatherService, AccuWeatherService>();
             services.AddSingleton<IFavoriteCityService, FavoriteCityService>();
@@ -52,7 +56,11 @@ namespace P04WeatherForecastAPI.Client
             services.AddTransient<MainWindow>();
             services.AddTransient<FavoriteCitiesView>();
 
-            
+            //Microsoft.Extensions.Http
+            services.AddHttpClient<IProductService, ProductService>(client =>
+            {
+                client.BaseAddress = new Uri(appSettingsSection.BaseAPIUrl + "/" + appSettingsSection.BaseProductEndpoint.Base_url);
+            });
         }
 
         private void OnStartup(object sender, StartupEventArgs e)
