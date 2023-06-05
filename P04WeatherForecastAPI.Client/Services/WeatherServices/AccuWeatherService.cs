@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P04WeatherForecastAPI.Client.Services
+namespace P04WeatherForecastAPI.Client.Services.WeatherServices
 {
     internal class AccuWeatherService : IAccuWeatherService
     {
@@ -27,7 +27,7 @@ namespace P04WeatherForecastAPI.Client.Services
             var builder = new ConfigurationBuilder()
                 .AddUserSecrets<App>()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsetings.json"); 
+                .AddJsonFile("appsetings.json");
 
             var configuration = builder.Build();
             api_key = configuration["api_key"];
@@ -49,12 +49,12 @@ namespace P04WeatherForecastAPI.Client.Services
 
         public async Task<Weather> GetCurrentConditions(string cityKey)
         {
-            string uri = base_url + "/" + string.Format(current_conditions_endpoint, cityKey, api_key,language);
+            string uri = base_url + "/" + string.Format(current_conditions_endpoint, cityKey, api_key, language);
             using (HttpClient client = new HttpClient())
             {
                 var response = await client.GetAsync(uri);
                 string json = await response.Content.ReadAsStringAsync();
-                Weather[] weathers= JsonConvert.DeserializeObject<Weather[]>(json);
+                Weather[] weathers = JsonConvert.DeserializeObject<Weather[]>(json);
                 return weathers.FirstOrDefault();
             }
         }

@@ -1,4 +1,5 @@
 ﻿using P06Shop.Shared;
+using P06Shop.Shared.Services.ProductService;
 using P06Shop.Shared.Shop;
 using P07Shop.DataSeeder;
 
@@ -8,14 +9,27 @@ namespace P05Shop.API.Services.ProductService
     {
         public async Task<ServiceResponse<List<Product>>> GetProductsAsync()
         {
-            var response = new ServiceResponse<List<Product>>()
+            try
             {
-                Data = ProductSeeder.GenerateProductData(),
-                Message = "Ok",
-                Success = true
-            };
+                var response = new ServiceResponse<List<Product>>()
+                {
+                    Data = ProductSeeder.GenerateProductData(),
+                    Message = "Ok",
+                    Success = true
+                };
 
-            return response;
+                return response;
+            }
+            catch (Exception)
+            {
+                return new  ServiceResponse<List<Product>>()
+                {
+                    Data = null,
+                    Message = "Problem with dataseeder library",
+                    Success = false
+                };
+            }
+           
         }
     }
 }

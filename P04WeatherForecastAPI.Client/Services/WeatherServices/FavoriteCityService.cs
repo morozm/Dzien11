@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P04WeatherForecastAPI.Client.Services
+namespace P04WeatherForecastAPI.Client.Services.WeatherServices
 {
     internal class FavoriteCityService : IFavoriteCityService
     {

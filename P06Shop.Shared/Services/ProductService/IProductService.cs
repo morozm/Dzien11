@@ -1,7 +1,7 @@
 ﻿using P06Shop.Shared;
 using P06Shop.Shared.Shop;
 
-namespace P05Shop.API.Services.ProductService
+namespace P06Shop.Shared.Services.ProductService
 {
     public interface IProductService
     {

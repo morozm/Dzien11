@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using P04WeatherForecastAPI.Client.Services;
+using P04WeatherForecastAPI.Client.Services.WeatherServices;
 using P04WeatherForecastAPI.Client.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -35,6 +35,8 @@ namespace P04WeatherForecastAPI.Client
            // services.AddSingleton<BaseViewModel,MainViewModelV3>();
             services.AddTransient<MainWindow>();
             services.AddTransient<FavoriteCitiesView>();
+
+            
         }
 
         private void OnStartup(object sender, StartupEventArgs e)

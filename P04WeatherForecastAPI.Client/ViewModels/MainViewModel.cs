@@ -1,7 +1,7 @@
 ﻿using P04WeatherForecastAPI.Client.Commands;
 using P04WeatherForecastAPI.Client.DataSeeders;
 using P04WeatherForecastAPI.Client.Models;
-using P04WeatherForecastAPI.Client.Services;
+using P04WeatherForecastAPI.Client.Services.WeatherServices;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
