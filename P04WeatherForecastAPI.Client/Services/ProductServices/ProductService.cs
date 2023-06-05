@@ -17,10 +17,7 @@ namespace P04WeatherForecastAPI.Client.Services.ProductServices
     {
         public ProductService()
         {
-            var builder = new ConfigurationBuilder()
-               .AddUserSecrets<App>()
-               .SetBasePath(Directory.GetCurrentDirectory())
-               .AddJsonFile("appsetings.json");
+           
 
 
         }
