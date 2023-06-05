@@ -48,13 +48,21 @@ namespace P04WeatherForecastAPI.Client
             var appSettingsSection = appSettings.Get<AppSettings>();
             services.Configure<AppSettings>(appSettings);
 
+            // konfiguracja serwisów 
             services.AddSingleton<IAccuWeatherService, AccuWeatherService>();
             services.AddSingleton<IFavoriteCityService, FavoriteCityService>();
+            services.AddSingleton<IProductService, ProductService>();
+
+            // konfiguracja viewModeli 
             services.AddSingleton<MainViewModelV4>();
             services.AddSingleton<FavoriteCityViewModel>();
+            services.AddSingleton<ProductsViewModel>();
            // services.AddSingleton<BaseViewModel,MainViewModelV3>();
+           
+            // konfiguracja okienek 
             services.AddTransient<MainWindow>();
             services.AddTransient<FavoriteCitiesView>();
+            services.AddTransient<ShopProductsView>();
 
             //Microsoft.Extensions.Http
             services.AddHttpClient<IProductService, ProductService>(client =>

@@ -23,19 +23,33 @@ namespace P04WeatherForecastAPI.Client.ViewModels
         private CityViewModel _selectedCity;
         private Weather _weather;
         private readonly IAccuWeatherService _accuWeatherService;
+
+        //favorite city 
         private readonly FavoriteCitiesView _favoriteCitiesView;
         private readonly FavoriteCityViewModel _favoriteCityViewModel;
         //public ICommand LoadCitiesCommand { get;  }
 
+        //shop
+        private readonly ShopProductsView _shopProductsView;
 
-        public MainViewModelV4(IAccuWeatherService accuWeatherService, FavoriteCityViewModel favoriteCityViewModel, FavoriteCitiesView favoriteCitiesView)
+
+        public MainViewModelV4(IAccuWeatherService accuWeatherService, 
+            FavoriteCityViewModel favoriteCityViewModel, FavoriteCitiesView favoriteCitiesView,
+            ShopProductsView shopProductsView
+            )
         {
             _favoriteCitiesView = favoriteCitiesView;
             _favoriteCityViewModel = favoriteCityViewModel;
+
+            _shopProductsView = shopProductsView;
+        
+
             // _serviceProvider= serviceProvider; 
             //LoadCitiesCommand = new RelayCommand(x => LoadCities(x as string));
             _accuWeatherService = accuWeatherService;
             Cities = new ObservableCollection<CityViewModel>(); // podejście nr 2 
+
+
         }
 
         //[ObservableProperty]
@@ -91,6 +105,13 @@ namespace P04WeatherForecastAPI.Client.ViewModels
             //var favoriteCitiesView = new FavoriteCitiesView();
             _favoriteCityViewModel.SelectedCity = new FavoriteCity() { Name = "Warsaw" };
             _favoriteCitiesView.Show();
+        }
+
+        [RelayCommand]
+        public void OpenShopWindow()
+        {
+
+            _shopProductsView.Show();
         }
     }
 }

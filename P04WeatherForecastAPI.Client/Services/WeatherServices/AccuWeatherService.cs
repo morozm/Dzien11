@@ -27,13 +27,13 @@ namespace P04WeatherForecastAPI.Client.Services.WeatherServices
             var builder = new ConfigurationBuilder()
                 .AddUserSecrets<App>()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsetings.json");
+                .AddJsonFile("appsettings.json");
 
             var configuration = builder.Build();
             api_key = configuration["api_key"];
             // language = configuration["default_language"];
             language = configuration["AppSettings:DefaultLanguage"];
-        }
+         }
 
 
         public async Task<City[]> GetLocations(string locationName)
