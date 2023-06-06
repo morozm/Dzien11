@@ -28,21 +28,18 @@ namespace P04WeatherForecastAPI.Client.ViewModels
         private readonly FavoriteCitiesView _favoriteCitiesView;
         private readonly FavoriteCityViewModel _favoriteCityViewModel;
         //public ICommand LoadCitiesCommand { get;  }
+        private readonly IServiceProvider _serviceProvider;
 
-        //shop
-        private readonly ShopProductsView _shopProductsView;
-        private readonly ProductsViewModel _productsViewModel;
+       
 
         public MainViewModelV4(IAccuWeatherService accuWeatherService, 
             FavoriteCityViewModel favoriteCityViewModel, FavoriteCitiesView favoriteCitiesView,
-            ProductsViewModel productsViewModel, ShopProductsView shopProductsView
-            )
+            IServiceProvider serviceProvider)
         {
             _favoriteCitiesView = favoriteCitiesView;
             _favoriteCityViewModel = favoriteCityViewModel;
 
-            _shopProductsView = shopProductsView;
-            _productsViewModel = productsViewModel;
+            _serviceProvider = serviceProvider;
 
                 // _serviceProvider= serviceProvider; 
                 //LoadCitiesCommand = new RelayCommand(x => LoadCities(x as string));
@@ -110,8 +107,11 @@ namespace P04WeatherForecastAPI.Client.ViewModels
         [RelayCommand]
         public void OpenShopWindow()
         {
-            _shopProductsView.Show();
-            _productsViewModel.GetProducts();
+            ShopProductsView shopProductsView = _serviceProvider.GetService<ShopProductsView>();
+            ProductsViewModel productsViewModel = _serviceProvider.GetService<ProductsViewModel>();
+
+            shopProductsView.Show();
+            productsViewModel.GetProducts();
         }
     }
 }
