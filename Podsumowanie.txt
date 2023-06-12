@@ -29,5 +29,9 @@ dotnet aspnet-codegenerator controller -name ProductsController -m Product -dc S
    wspoldzielony z P10ShopWebAPPMVC.Client
 
 
+podsumowujac P09ShopWebAPPMVC korzystal z bazy danych bezposrednio
 
+a teraz P10ShopWebAPPMVC korzysta z API (serwisy przenisiono z shared)
 
+niestety musimy dodac metode   Task<ServiceResponse<Product>> GetProductByIdAsync(int id);
+w product service bo wczesniej jej potrzebowalismy (w aplikacj wpf)

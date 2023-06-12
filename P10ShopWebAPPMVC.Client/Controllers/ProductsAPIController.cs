@@ -26,28 +26,31 @@ namespace P09ShopWebAPPMVC.Client.Controllers
         public async Task<IActionResult> Index()
         {
             var products = await _productService.GetProductsAsync();
-            return products != null ? 
-                          View("~/Views/Products/Index.cshtml", products.Data.AsEnumerable()) :
+            return products != null ?
+                          View(products.Data.AsEnumerable()) :
                           Problem("Entity set 'ShopContext.Products'  is null.");
+
+            //return products != null ? 
+            //              View("~/Views/Products/Index.cshtml", products.Data.AsEnumerable()) :
+            //              Problem("Entity set 'ShopContext.Products'  is null.");
         }
 
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            throw new NotImplementedException();
-            //if (id == null || _context.Products == null)
-            //{
-            //    return NotFound();
-            //}
+         
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var product = await _productService.GetProductByIdAsync((int)id);
+            
+            if (product.Data == null)
+            {
+                return NotFound();
+            }
 
-            //var product = await _context.Products
-            //    .FirstOrDefaultAsync(m => m.Id == id);
-            //if (product == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //return View(product);
+            return View(product.Data);
         }
 
         // GET: Products/Create
@@ -63,31 +66,30 @@ namespace P09ShopWebAPPMVC.Client.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Description,Barcode,Price,ReleaseDate")] Product product)
         {
-            throw new NotImplementedException();
-            //if (ModelState.IsValid)
-            //{
-            //    _context.Add(product);
-            //    await _context.SaveChangesAsync();
-            //    return RedirectToAction(nameof(Index));
-            //}
-            //return View(product);
+             
+            if (ModelState.IsValid)
+            {
+                await _productService.CreateProductAsync(product);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(product);
         }
 
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            throw new NotImplementedException();
-            //if (id == null || _context.Products == null)
-            //{
-            //    return NotFound();
-            //}
+            
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            //var product = await _context.Products.FindAsync(id);
-            //if (product == null)
-            //{
-            //    return NotFound();
-            //}
-            //return View(product);
+            var product =await _productService.GetProductByIdAsync((int)id);
+            if (product.Data == null)
+            {
+                return NotFound();
+            }
+            return View(product.Data);
         }
 
         // POST: Products/Edit/5
@@ -97,52 +99,43 @@ namespace P09ShopWebAPPMVC.Client.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Barcode,Price,ReleaseDate")] Product product)
         {
-            throw new NotImplementedException();
-            //if (id != product.Id)
-            //{
-            //    return NotFound();
-            //}
 
-            //if (ModelState.IsValid)
-            //{
-            //    try
-            //    {
-            //        _context.Update(product);
-            //        await _context.SaveChangesAsync();
-            //    }
-            //    catch (DbUpdateConcurrencyException)
-            //    {
-            //        if (!ProductExists(product.Id))
-            //        {
-            //            return NotFound();
-            //        }
-            //        else
-            //        {
-            //            throw;
-            //        }
-            //    }
-            //    return RedirectToAction(nameof(Index));
-            //}
-            //return View(product);
+            if (id != product.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var productResult = await _productService.UpdateProductAsync(product);
+                }
+                catch (Exception)
+                {
+                     return NotFound();
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(product);
         }
 
         // GET: Products/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            throw new NotImplementedException();
-            //if (id == null || _context.Products == null)
-            //{
-            //    return NotFound();
-            //}
 
-            //var product = await _context.Products
-            //    .FirstOrDefaultAsync(m => m.Id == id);
-            //if (product == null)
-            //{
-            //    return NotFound();
-            //}
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            //return View(product);
+            var product = await _productService.GetProductByIdAsync((int)id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product.Data);
         }
 
         // POST: Products/Delete/5
@@ -150,24 +143,13 @@ namespace P09ShopWebAPPMVC.Client.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            throw new NotImplementedException();
-            //if (_context.Products == null)
-            //{
-            //    return Problem("Entity set 'ShopContext.Products'  is null.");
-            //}
-            //var product = await _context.Products.FindAsync(id);
-            //if (product != null)
-            //{
-            //    _context.Products.Remove(product);
-            //}
-
-            //await _context.SaveChangesAsync();
-            //return RedirectToAction(nameof(Index));
+            var product = await _productService.DeleteProductAsync((int)id);
+            if (product.Success)
+                return RedirectToAction(nameof(Index));
+            else
+                return NotFound();
+          
         }
-
-        //private bool ProductExists(int id)
-        //{
-        //  return (_context.Products?.Any(e => e.Id == id)).GetValueOrDefault();
-        //}
+         
     }
 }

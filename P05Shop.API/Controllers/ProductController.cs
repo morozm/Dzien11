@@ -32,6 +32,20 @@ namespace P05Shop.API.Controllers
         }
 
 
+        // http:localhost/api/product/4 dla api REST
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ServiceResponse<Product>>> GetProduct(int id)
+        {
+          
+            var result = await _productService.GetProductByIdAsync(id);
+
+            if (result.Success)
+                return Ok(result);
+            else
+                return StatusCode(500, $"Internal server error {result.Message}");
+        }
+
+
         [HttpPut]
         public async Task<ActionResult<ServiceResponse<Product>>> UpdateProduct([FromBody] Product product)
         {

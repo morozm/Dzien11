@@ -43,6 +43,8 @@ namespace P06Shop.Shared.Services.ProductService
             return result;
         }
 
+   
+
 
         //// skopiowane z postmana 
         //public async Task<ServiceResponse<List<Product>>> GetProductsAsync()
@@ -71,6 +73,25 @@ namespace P06Shop.Shared.Services.ProductService
             var json = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<ServiceResponse<List<Product>>>(json)
                 ?? new ServiceResponse<List<Product>> { Success = false, Message = "Deserialization failed" };
+
+            result.Success = result.Success && result.Data != null;
+
+            return result;
+        }
+
+        public async Task<ServiceResponse<Product>> GetProductByIdAsync(int id)
+        {
+            var response = await _httpClient.GetAsync(id.ToString());
+            if (!response.IsSuccessStatusCode)
+                return new ServiceResponse<Product>
+                {
+                    Success = false,
+                    Message = "HTTP request failed"
+                };
+
+            var json = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<ServiceResponse<Product>>(json)
+                ?? new ServiceResponse<Product> { Success = false, Message = "Deserialization failed" };
 
             result.Success = result.Success && result.Data != null;
 

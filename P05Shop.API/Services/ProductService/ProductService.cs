@@ -50,6 +50,31 @@ namespace P05Shop.API.Services.ProductService
             return new ServiceResponse<bool>() {  Data = true, Success = true };
         }
 
+        public async Task<ServiceResponse<Product>> GetProductByIdAsync(int id)
+        {
+            try
+            {
+                var product = await _dataContext.Products.FindAsync(id);
+                var response = new ServiceResponse<Product>()
+                {
+                    Data = product,
+                    Message = "Ok",
+                    Success = true
+                };
+
+                return response;
+            }
+            catch (Exception)
+            {
+                return new ServiceResponse<Product>()
+                {
+                    Data = null,
+                    Message = "Problem with database",
+                    Success = false
+                };
+            }
+        }
+
         public async Task<ServiceResponse<List<Product>>> GetProductsAsync()
         {
             var products = await _dataContext.Products.ToListAsync();
