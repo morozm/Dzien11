@@ -6,3 +6,7 @@ dotnet ef dbcontext scaffold "Data Source=(localdb)\\mssqllocaldb;Initial Catalo
 
 dotnet ef dbcontext scaffold "name=DefaultConnection" Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context-dir Data --context ShopContext --force
  
+
+ dotnet tool install -g dotnet-aspnet-codegenerator
+
+dotnet aspnet-codegenerator controller -name ProductsController -m Product -dc ShopContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
