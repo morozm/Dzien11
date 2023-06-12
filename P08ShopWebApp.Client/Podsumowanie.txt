@@ -1,8 +1,0 @@
-﻿
-
-dotnet ef dbcontext scaffold "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=shop;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context-dir Data --context ShopContext --force
-
-
-
-dotnet ef dbcontext scaffold "name=DefaultConnection" Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context-dir Data --context ShopContext --force
- 

@@ -31,7 +31,7 @@ namespace P08ShopWebApp.Client.Pages.ProductsAutoGen
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Products == null || Product == null)
+           if (!ModelState.IsValid || _context.Products == null || Product == null)
             {
                 return Page();
             }
