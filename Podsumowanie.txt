@@ -35,3 +35,7 @@ a teraz P10ShopWebAPPMVC korzysta z API (serwisy przenisiono z shared)
 
 niestety musimy dodac metode   Task<ServiceResponse<Product>> GetProductByIdAsync(int id);
 w product service bo wczesniej jej potrzebowalismy (w aplikacj wpf)
+
+potem uzupelnilismy metody w ProductsAPIController do obsługi api 
+
+i wrzucilismy aktualizacje api do azure oraz stowrzylismy nowy web app dla aplikacji asp net mvc 
