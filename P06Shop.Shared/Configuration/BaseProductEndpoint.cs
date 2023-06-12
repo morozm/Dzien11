@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P04WeatherForecastAPI.Client.Configuration
+namespace P06Shop.Shared.Configuration
 {
-    internal class BaseProductEndpoint
+    public class BaseProductEndpoint
     {
         public string Base_url { get; set; }
-        public string GetAllProductsEndpoint {  get; set; }
+        public string GetAllProductsEndpoint { get; set; }
     }
 }

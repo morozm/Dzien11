@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P04WeatherForecastAPI.Client.Configuration
+namespace P06Shop.Shared.Configuration
 {
-    internal class AppSettings
+    public class AppSettings
     {
         public string DefaultLanguage { get; set; }
         public string SpeechApiKey { get; set; }

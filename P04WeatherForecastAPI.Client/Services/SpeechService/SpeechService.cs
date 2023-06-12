@@ -1,6 +1,6 @@
 ﻿using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
-using P04WeatherForecastAPI.Client.Configuration;
+using P06Shop.Shared.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;

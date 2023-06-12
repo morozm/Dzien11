@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P04WeatherForecastAPI.Client.Configuration
+namespace P06Shop.Shared.Configuration
 {
     public class SpeechSettings
     {

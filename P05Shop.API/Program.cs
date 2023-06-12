@@ -16,7 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductService, P05Shop.API.Services.ProductService.ProductService>();
 
 // addScoped - obiekt jest tworzony za kazdym razem dla nowego zapytania http
 // jedno zaptranie tworzy jeden obiekt 

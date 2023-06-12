@@ -1,12 +1,33 @@
+﻿
 
+1) dodalismy P08ShopWebApp.Client
+- który jest prostą aplikacją webową, która pobiera z bazy danych bezposrednio dane 
 
-
+uzlismy scaffold do zmapwaoania bazy danych
 
 dotnet ef dbcontext scaffold "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=shop;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context-dir Data --context ShopContext --force
 
 dotnet ef dbcontext scaffold "name=DefaultConnection" Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context-dir Data --context ShopContext --force
  
+ nastepnie uzlismy scaffolding (z intrefjsu visual studio ) do wygenerowania automatycznego
+ widoków razor CURD 
+
+ 2) dodalismy projekt P09ShopWebAPPMVC.Client
+  , który jest aplikacja mvc 
+
+  dodadalismy scaffolding bazy danych oraz scaffolding kodu : 
 
  dotnet tool install -g dotnet-aspnet-codegenerator
 
 dotnet aspnet-codegenerator controller -name ProductsController -m Product -dc ShopContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+
+
+3) P10ShopWebAPPMVC.Client
+ doszlismy do wniosku, ze po co kozrystac z osobnego polaczenia z baza- 
+ skoro mozna skorzystac z istniejaceg api 
+ - przenieslismy productService zP04WeatherForecastAPI.Client do shared zeby byl
+   wspoldzielony z P10ShopWebAPPMVC.Client
+
+
+
+

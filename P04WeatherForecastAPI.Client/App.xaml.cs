@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using P04WeatherForecastAPI.Client.Configuration;
 using P04WeatherForecastAPI.Client.MessageBox;
-using P04WeatherForecastAPI.Client.Services.ProductServices;
+
 using P04WeatherForecastAPI.Client.Services.SpeechService;
 using P04WeatherForecastAPI.Client.Services.WeatherServices;
 using P04WeatherForecastAPI.Client.ViewModels;
+using P06Shop.Shared.Configuration;
 using P06Shop.Shared.MessageBox;
 using P06Shop.Shared.Services.ProductService;
 using System;

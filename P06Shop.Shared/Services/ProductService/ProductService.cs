@@ -1,10 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿ 
 using Microsoft.Extensions.Options;
 using Microsoft.VisualBasic.FileIO;
 using Newtonsoft.Json;
-using P04WeatherForecastAPI.Client.Configuration;
 using P06Shop.Shared;
-using P06Shop.Shared.Services.ProductService;
+using P06Shop.Shared.Configuration;
 using P06Shop.Shared.Shop;
 using System;
 using System.Collections.Generic;
@@ -15,17 +14,17 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P04WeatherForecastAPI.Client.Services.ProductServices
+namespace P06Shop.Shared.Services.ProductService
 {
-    internal class ProductService : IProductService
+    public class ProductService : IProductService
     {
 
         private readonly HttpClient _httpClient;
         private readonly AppSettings _appSettings;
         public ProductService(HttpClient httpClient, IOptions<AppSettings> appSettings)
         {
-            _httpClient= httpClient;
-            _appSettings= appSettings.Value;
+            _httpClient = httpClient;
+            _appSettings = appSettings.Value;
         }
 
         public async Task<ServiceResponse<Product>> CreateProductAsync(Product product)
