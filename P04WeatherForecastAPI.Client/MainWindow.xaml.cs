@@ -49,11 +49,14 @@ namespace P04WeatherForecastAPI.Client
             if(selectedCity != null)
             {
                 var weather = await accuWeatherService.GetCurrentConditions(selectedCity.Key);
-                var onedayforecast = await accuWeatherService.OneDayOfDailyForecast(selectedCity.Key);
+                var onedayforecast = await accuWeatherService.GetOneDayOfDailyForecast(selectedCity.Key);
                 lblCityName.Content = selectedCity.LocalizedName;
                 double tempValue = weather.Temperature.Metric.Value;
-                double
+                double tempValueOneDayMin = onedayforecast.DailyForecasts.Temperature.Minimum.Value;
+                double tempValueOneDayMax = onedayforecast.DailyForecasts.Temperature.Maximum.Value;
                 lblTemperatureValue.Content = Convert.ToString(tempValue);
+                lblTemperatureValueOneDayMin.Content = Convert.ToString(tempValueOneDayMin);
+                lblTemperatureValueOneDayMax.Content = Convert.ToString(tempValueOneDayMax);
             }
         }
     }

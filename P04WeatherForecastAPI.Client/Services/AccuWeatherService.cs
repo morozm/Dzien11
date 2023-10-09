@@ -61,16 +61,17 @@ namespace P04WeatherForecastAPI.Client.Services
             }
         }
 
-        public async Task<Weather> OneDayOfDailyForecast(string cityKey)
+        public async Task<Forecast> GetOneDayOfDailyForecast(string cityKey)
         {
             string uri = base_url + "/" + string.Format(one_day_of_daily_forecast_endpoint, cityKey, api_key, language);
             using (HttpClient client = new HttpClient())
             {
                 var response = await client.GetAsync(uri);
                 string json = await response.Content.ReadAsStringAsync();
-                Weather[] weathers = JsonConvert.DeserializeObject<Weather[]>(json);
-                return weathers.FirstOrDefault();
+                Forecast[] forecasts = JsonConvert.DeserializeObject<Forecast[]>(json);
+                return forecasts.FirstOrDefault();
             }
         }
+
     }
 }

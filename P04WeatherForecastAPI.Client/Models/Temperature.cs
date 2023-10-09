@@ -10,5 +10,7 @@ namespace P04WeatherForecastAPI.Client.Models
     {
         public Metric Metric { get; set; }
         public Imperial Imperial { get; set; }
+        public Minimum Minimum { get; set; }
+        public Maximum Maximum { get; set; }
     }
 }
