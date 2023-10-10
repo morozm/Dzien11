@@ -21,7 +21,6 @@ namespace P04WeatherForecastAPI.Client.Models
         public TimeZone TimeZone { get; set; }
         public GeoPosition GeoPosition { get; set; }
         public bool IsAlias { get; set; }
-        public ParentCity ParentCity { get; set; }
         public List<SupplementalAdminArea> SupplementalAdminAreas { get; set; }
         public List<string> DataSets { get; set; }
     }
