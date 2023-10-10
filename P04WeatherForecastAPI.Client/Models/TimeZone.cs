@@ -12,6 +12,6 @@ namespace P04WeatherForecastAPI.Client.Models
         public string Name { get; set; }
         public double GmtOffset { get; set; }
         public bool IsDaylightSaving { get; set; }
-        public DateTime NextOffsetChange { get; set; }
+        public DateTime? NextOffsetChange { get; set; }
     }
 }

@@ -33,19 +33,19 @@ namespace P04WeatherForecastAPI.Client
         {
             
             City[] cities= await accuWeatherService.GetLocations(txtCity.Text);
-
             // standardowy sposób dodawania elementów
             //lbData.Items.Clear();
             //foreach (var c in cities)
             //    lbData.Items.Add(c.LocalizedName);
-
             // teraz musimy skorzystac z bindowania danych bo chcemy w naszej kontrolce przechowywac takze id miasta 
             lbData.ItemsSource = cities;
         }
 
         private async void btnSearchPostalCode_Click(object sender, RoutedEventArgs e)
         {
-            City[] cities = await accuWeatherService.GetLocationsPostalCode(txtPostalCode.Text);
+            PostalCode[] postalCodes = await accuWeatherService.GetLocationsPostalCode(txtPostalCode.Text);
+            var selectedPostalCode = postalCodes.FirstOrDefault();
+            City[] cities = await accuWeatherService.GetLocations(selectedPostalCode.LocalizedName);
             var selectedCity = cities.FirstOrDefault();
             if (selectedCity != null)
             {

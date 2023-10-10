@@ -44,7 +44,7 @@ namespace P04WeatherForecastAPI.Client.Services
 
         public async Task<City[]> GetLocations(string locationName)
         {
-            string uri1_1 = base_url + "/" + string.Format(autocomplete_endpoint, api_key, locationName, language);
+            string uri1_1 = base_url + "/" + string.Format(autocomplete_endpoint, api_key, locationName, "en");
             using (HttpClient client = new HttpClient())
             {
                 var response = await client.GetAsync(uri1_1);
@@ -54,15 +54,15 @@ namespace P04WeatherForecastAPI.Client.Services
             }
         }
 
-        public async Task<City[]> GetLocationsPostalCode(string locationName)
+        public async Task<PostalCode[]> GetLocationsPostalCode(string locationName)
         {
             string uri1_2 = base_url + "/" + string.Format(postal_code_endpoint, api_key, locationName, language);
             using (HttpClient client = new HttpClient())
             {
                 var response = await client.GetAsync(uri1_2);
                 string json = await response.Content.ReadAsStringAsync();
-                City[] cities = JsonConvert.DeserializeObject<City[]>(json);
-                return cities;
+                PostalCode[] postalCodes = JsonConvert.DeserializeObject<PostalCode[]>(json);
+                return postalCodes;
             }
         }
 
