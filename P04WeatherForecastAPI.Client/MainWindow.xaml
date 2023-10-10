@@ -5,23 +5,74 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P04WeatherForecastAPI.Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="300">
+        Title="MainWindow" Height="700" Width="700">
     <DockPanel>
         <StackPanel Width="150" DockPanel.Dock="Left">
             <Label Content="City:" ></Label>
             <TextBox x:Name="txtCity"></TextBox>
-            <Button x:Name="btnSearch" Content="Search" Click="btnSearch_Click"></Button>
+            <Button x:Name="btnSearchCity" Content="Search" Click="btnSearchCity_Click"></Button>
             <ListBox x:Name="lbData" DisplayMemberPath="LocalizedName" SelectionChanged="lbData_SelectionChanged"></ListBox>
+
+            <Label Content="Postal code:" ></Label>
+            <TextBox x:Name="txtPostalCode"></TextBox>
+            <Button x:Name="btnSearchPostalCode" Content="Search" Click="btnSearchPostalCode_Click"></Button>
         </StackPanel>
         <StackPanel>
-            <Label HorizontalAlignment="Center" Content="Temperature for city:"></Label>
-            <Label x:Name="lblCityName" HorizontalAlignment="Center" Content="..."></Label>
-            <Label  HorizontalAlignment="Center" Content="is:"></Label>
-            <Label x:Name="lblTemperatureValue" HorizontalAlignment="Center" Content="..."></Label>
-            <Label  HorizontalAlignment="Center" Content="in 1 day will be from:"></Label>
-            <Label x:Name="lblTemperatureValueOneDayMin" HorizontalAlignment="Center" Content="..."></Label>
-            <Label  HorizontalAlignment="Center" Content="to:"></Label>
-            <Label x:Name="lblTemperatureValueOneDayMax" HorizontalAlignment="Center" Content="..."></Label>
+            <Label HorizontalAlignment="Center">
+                <TextBlock>
+                    <Label Content="Temperature for city"/>
+                    <Label x:Name="lblCityName" Content="..." />
+                    <Label Content="is"/>
+                    <Label x:Name="lblTemperatureValue" Content="..." />
+                    <Label Content="°C"/>
+                </TextBlock>
+            </Label>
+            <Label HorizontalAlignment="Center">
+                <TextBlock>
+                    <Label Content="In 1 day it will be from"/>
+                    <Label x:Name="lblTemperatureValueOneDayMin" Content="..." />
+                    <Label Content="°F"/>
+                    <Label Content="to"/>
+                    <Label x:Name="lblTemperatureValueOneDayMax" Content="..." />
+                    <Label Content="°F"/>
+                </TextBlock>
+            </Label>
+            <Label HorizontalAlignment="Center">
+                <TextBlock>
+                    <Label Content="In 5 days it will be from"/>
+                    <Label x:Name="lblTemperatureValueFiveDaysMin" Content="..." />
+                    <Label Content="°F"/>
+                    <Label Content="to"/>
+                    <Label x:Name="lblTemperatureValueFiveDaysMax" Content="..." />
+                    <Label Content="°F"/>
+                </TextBlock>
+            </Label>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Background="LightGray" Margin="150,0,10,0">
+                    <Label Content="Last temperatures:" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                </Border>
+                <Border Grid.Column="1" Background="LightBlue" Margin="10,0,10,0">
+                    <Label x:Name="lblLastTemperatures" Content="..." Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                </Border>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Background="LightGray" Margin="150,10,10,0">
+                    <Label Content="City neighbors:" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                </Border>
+                <Border Grid.Column="1" Background="LightBlue" Margin="10,10,10,0">
+                    <Label x:Name="lblCityNeighbors" Content="..." Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                </Border>
+            </Grid>
         </StackPanel>
     </DockPanel>
 </Window>

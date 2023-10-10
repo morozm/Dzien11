@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace P04WeatherForecastAPI.Client.Models
 {
-    internal class Forecast
+    internal class GeoPosition
     {
-        public Headline Headline { get; set; }
-        public List<DailyForecast> DailyForecasts { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+        public Elevation Elevation { get; set; }
     }
 }
