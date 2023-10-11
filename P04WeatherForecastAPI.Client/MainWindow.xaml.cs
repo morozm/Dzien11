@@ -32,7 +32,7 @@ namespace P04WeatherForecastAPI.Client
         private async void btnSearchCity_Click(object sender, RoutedEventArgs e)
         {
             
-            City[] cities= await accuWeatherService.GetLocations(txtCity.Text);
+            City[] cities= await accuWeatherService.GetLocationsPl(txtCity.Text);
             // standardowy sposób dodawania elementów
             //lbData.Items.Clear();
             //foreach (var c in cities)
@@ -45,7 +45,8 @@ namespace P04WeatherForecastAPI.Client
         {
             PostalCode[] postalCodes = await accuWeatherService.GetLocationsPostalCode(txtPostalCode.Text);
             var selectedPostalCode = postalCodes.FirstOrDefault();
-            City[] cities = await accuWeatherService.GetLocations(selectedPostalCode.LocalizedName);
+            var cityName = selectedPostalCode.LocalizedName;
+            City[] cities = await accuWeatherService.GetLocationsPl(cityName);
             var selectedCity = cities.FirstOrDefault();
             if (selectedCity != null)
             {

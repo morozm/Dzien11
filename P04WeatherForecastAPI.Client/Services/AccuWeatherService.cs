@@ -14,13 +14,13 @@ namespace P04WeatherForecastAPI.Client.Services
     internal class AccuWeatherService
     {
         private const string base_url = "http://dataservice.accuweather.com";
-        private const string autocomplete_endpoint = "locations/v1/cities/autocomplete?apikey={0}&q={1}&language{2}";
-        private const string postal_code_endpoint = "locations/v1/postalcodes/search?apikey={0}&q={1}&language{2}";
-        private const string current_conditions_endpoint = "currentconditions/v1/{0}?apikey={1}&language{2}";
-        private const string one_day_of_daily_forecasts_endpoint = "forecasts/v1/daily/1day/{0}?apikey={1}&language{2}";
-        private const string five_days_of_daily_forecasts_endpoint = "forecasts/v1/daily/5day/{0}?apikey={1}&language{2}";
-        private const string city_neighbors_endpoint = "locations/v1/cities/neighbors/{0}?apikey={1}&language{2}";
-        private const string last_temperatures_endpoint = "currentconditions/v1/{0}/historical/24?apikey={1}&language{2}";
+        private const string autocomplete_endpoint = "locations/v1/cities/autocomplete?apikey={0}&q={1}&language={2}";
+        private const string postal_code_endpoint = "locations/v1/postalcodes/search?apikey={0}&q={1}&language={2}";
+        private const string current_conditions_endpoint = "currentconditions/v1/{0}?apikey={1}&language={2}";
+        private const string one_day_of_daily_forecasts_endpoint = "forecasts/v1/daily/1day/{0}?apikey={1}&language={2}";
+        private const string five_days_of_daily_forecasts_endpoint = "forecasts/v1/daily/5day/{0}?apikey={1}&language={2}";
+        private const string city_neighbors_endpoint = "locations/v1/cities/neighbors/{0}?apikey={1}&language={2}";
+        private const string last_temperatures_endpoint = "currentconditions/v1/{0}/historical/24?apikey={1}&language={2}";
 
         private const string radar_and_satellite_imagery = "imagery/v1/maps/radsat/480x480/";
 
@@ -42,9 +42,21 @@ namespace P04WeatherForecastAPI.Client.Services
         }
 
 
-        public async Task<City[]> GetLocations(string locationName)
+        public async Task<City[]> GetLocationsEn(string locationName)
         {
             string uri1_1 = base_url + "/" + string.Format(autocomplete_endpoint, api_key, locationName, "en");
+            using (HttpClient client = new HttpClient())
+            {
+                var response = await client.GetAsync(uri1_1);
+                string json = await response.Content.ReadAsStringAsync();
+                City[] cities = JsonConvert.DeserializeObject<City[]>(json);
+                return cities;
+            }
+        }
+
+        public async Task<City[]> GetLocationsPl(string locationName)
+        {
+            string uri1_1 = base_url + "/" + string.Format(autocomplete_endpoint, api_key, locationName, "pl");
             using (HttpClient client = new HttpClient())
             {
                 var response = await client.GetAsync(uri1_1);
