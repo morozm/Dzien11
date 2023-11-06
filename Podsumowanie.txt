@@ -10,3 +10,14 @@ dotnet aspnet-codegenerator controller -name ProductsController -m Product -dc S
 
 
 
+zmienne środowiskowe: 
+$Env:ASPNETCORE_ENVIRONMENT = "Development"
+dotnet run
+
+lub cmd
+set ASPNETCORE_ENVIRONMENT=Development
+dotnet run
+
+lub linux
+export ASPNETCORE_ENVIRONMENT=Development
+dotnet run
