@@ -1,4 +1,5 @@
-stworzenie nowego serwisu API, który będzie obsługiwał dane innych typów niż produkty. Student powinien samodzielnie wymyślić, jakie dane będzie zarządzać (np. książki, filmy, zadania, zamówienia itp.). 
+stworzenie nowego serwisu API, który będzie obsługiwał dane innych typów niż produkty.
+Student powinien samodzielnie wymyślić, jakie dane będzie zarządzać (np. książki, filmy, zadania, zamówienia itp.). 
 
 Wymagania:
 CRUD Operations: Serwis musi oferować podstawowe operacje CRUD (Create, Read, Update, Delete).

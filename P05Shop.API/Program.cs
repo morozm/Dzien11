@@ -1,5 +1,5 @@
-using P05Shop.API.Services.ProductService;
-using P06Shop.Shared.Services.ProductService;
+using P05Shop.API.Services.BookService;
+using P06Shop.Shared.Services.BookService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IBookService, BookService>();
 
 // addScoped - obiekt jest tworzony za kazdym razem dla nowego zapytania http
 // jedno zaptranie tworzy jeden obiekt 
@@ -20,9 +20,6 @@ builder.Services.AddScoped<IProductService, ProductService>();
 // nawet wielokrotnie w cyklu jedengo zaptrania 
 
  //addsingleton - nowa instancja klasy tworzona jest tylko 1 na caly cykl trwania naszej aplikacji 
-
-
-
 
 var app = builder.Build();
 
